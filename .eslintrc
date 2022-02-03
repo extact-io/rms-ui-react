@@ -1,0 +1,109 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest/globals": true
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "plugins": [
+    "react-hooks",
+    "react",
+    "import",
+    "jest"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "prettier",
+    "plugin:import/recommended"
+  ],
+  "rules": {
+    "quotes": [
+      "warn",
+      "single"
+    ],
+    "semi": [
+      "warn",
+      "always"
+    ],
+    "no-unused-vars": [
+      "warn"
+    ],
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "import/no-unresolved": [
+      "off",
+      {
+        "commonjs": true,
+        "amd": true
+      }
+    ],
+    "import/named": "warn",
+    "import/namespace": "warn",
+    "import/default": "warn",
+    "import/export": "warn",
+    "import/group-exports": "off",
+    "import/order": [
+      "warn",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+          "object"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "@**/**",
+            "group": "external",
+            "position": "after"
+          },
+          {
+            "pattern": "commons/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "pages/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "model/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "router/**",
+            "group": "internal",
+            "position": "before"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": [
+          "builtin"
+        ],
+        "alphabetize": {
+          "order": "asc"
+        },
+        "newlines-between": "ignore"
+      }
+    ]
+  }
+}
