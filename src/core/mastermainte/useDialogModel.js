@@ -110,7 +110,7 @@ export const useDialogModel = (rows, dispach, apiContext) => {
     dialogInput.revalidateOnDep(changeField);
   };
 
-  const dialogModel = {
+  return {
     target: dialogInput.target,
     targetDialogContent,
     begin,
@@ -124,7 +124,6 @@ export const useDialogModel = (rows, dispach, apiContext) => {
     revalidateOnDep,
     loading,
   };
-  return dialogModel;
 };
 
 const useDialogInput = (entityClass) => {
@@ -179,7 +178,7 @@ const useDialogInput = (entityClass) => {
     setTarget({ ...target });
   };
 
-  const dialogInput = {
+  return {
     target,
     begin,
     beginForReference,
@@ -189,5 +188,4 @@ const useDialogInput = (entityClass) => {
     validateAll,
     revalidateOnDep,
   };
-  return dialogInput;
 };

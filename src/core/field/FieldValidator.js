@@ -1,6 +1,4 @@
 class FieldValidator {
-  // after change to TypeScript, make it Interface.
-  constructor() {}
   bindThis(object) {
     this.validate = this.validate.bind(object);
   }

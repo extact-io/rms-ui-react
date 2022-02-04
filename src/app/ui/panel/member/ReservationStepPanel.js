@@ -106,7 +106,7 @@ function useStepFlow(selectedItem) {
   };
 }
 
-export default function ReservationStep() {
+export default function ReservationStepPanel() {
   const classes = useStyles();
   const { keepValue: selectedItem } = useContext(TabContext);
   const stepFlow = useStepFlow(selectedItem);

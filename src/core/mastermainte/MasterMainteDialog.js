@@ -122,7 +122,7 @@ export default function MasterMainteDialog({ dialogContent }) {
                     variant="contained"
                     color="secondary"
                     className={classes.button}
-                    onClick={() => handleDelete(dialogModel.target)}
+                    onClick={handleDelete}
                     disabled={dialogModel.loading}
                   >
                     削除する
@@ -130,7 +130,7 @@ export default function MasterMainteDialog({ dialogContent }) {
                   <ConfirmDialog
                     message={`番号${dialogModel.target.id}を削除しますか？`}
                     open={openConfirmDialog}
-                    handleYes={(event) => handleDeleteConfirmingYes(event)}
+                    handleYes={handleDeleteConfirmingYes}
                     handleNo={handleDeleteConfirmingNo}
                     focusTarget="no"
                   />

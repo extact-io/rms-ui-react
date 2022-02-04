@@ -1,9 +1,13 @@
 import { ApiDtoConverter } from 'app/model/api/ApiDtoConverter';
 import { LangUtils } from 'core/utils/LangUtils';
 
-// ApiとModelのプロパティ名にギャップが出た時にギャップを吸収する
-// ApiとModelのデータ形式の変換
-class CommonApiFacade {
+/**
+ * WebApi呼び出しに対して以下を行うFacadeクラス
+ * ・DtoとModelObjectのプロパティ名にギャップが出た時のギャップの吸収
+ * ・DtoとModelObjectのデータ形式の変換
+ * ・StatusCodeの変換と例外ハンドリング
+ */
+ class CommonApiFacade {
   constructor(commonApi, errorHandler) {
     this.commonApi = commonApi;
     this.errorHandler = errorHandler;

@@ -28,10 +28,6 @@ export default function SessionContextProvider({ children }) {
   };
   const fallbackAuth = async () => {
     // jwtもなければ未認証
-    // const { id } = BearerToken.getInstance();
-    // if (!id) {
-    //   return false;
-    // }
     const token = BearerToken.getInstance();
     if (!token) {
       return false;
@@ -39,25 +35,25 @@ export default function SessionContextProvider({ children }) {
 
     // jwtの情報をもとにServerからユーザ情報をfetchして取得
     const commonApiFacade = ApiClientFactory.instance.getCommonApiFacade();
-    let loginUser = null;
+    let restoredLoginUser = null;
     try {
-      loginUser = await commonApiFacade.getOwnUserProfile();
+      restoredLoginUser = await commonApiFacade.getOwnUserProfile();
     } catch (error) {
       console.log(error.status, error.message);
       return null;
     }
 
     // 復元したユーザ情報をセッションへ格納
-    updateLoginUser(loginUser);
+    updateLoginUser(restoredLoginUser);
 
     // 遷移先の決定
-    switch (loginUser.userType.value) {
+    switch (restoredLoginUser.userType.value) {
       case UserType.USER_TYPES.MEMBER.value:
         return '/member';
       case UserType.USER_TYPES.ADMIN.value:
         return '/admin';
       default:
-        throw new Error('Unknown userType=' + loginUser.userType);
+        throw new Error('Unknown userType=' + restoredLoginUser.userType);
     }
   };
 

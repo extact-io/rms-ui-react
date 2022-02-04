@@ -8,7 +8,6 @@ export class BearerToken {
   static getInstance() {
     const values = localStorage.getItem(BearerToken.#STORAGE_KEY);
     if (!values) {
-      //return { id: null };
       return null;
     }
     const { id, token } = JSON.parse(values);

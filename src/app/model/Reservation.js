@@ -75,7 +75,7 @@ export class Reservation {
     if (!reservationFields) {
       return reservationFields; // null or undefined
     }
-    const ret = {
+    return {
       id: reservationFields.id,
       startDateTime: concatDateTimeObject(
         reservationFields.startDate.value,
@@ -89,7 +89,6 @@ export class Reservation {
       userAccountDto: reservationFields.userAccountDto,
       rentalItemDto: reservationFields.rentalItemDto,
     };
-    return ret;
   }
 }
 

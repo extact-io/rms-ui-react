@@ -7,9 +7,13 @@ const defaultDeleteHandlers = {
   409: () => '他のデータから参照されているため削除ができません',
 };
 
-// ApiとModelのプロパティ名にギャップが出た時にギャップを吸収する
-// ApiとModelのデータ形式の変換
-export class AdminApiFacade {
+/**
+ * WebApi呼び出しに対して以下を行うFacadeクラス
+ * ・DtoとModelObjectのプロパティ名にギャップが出た時のギャップの吸収
+ * ・DtoとModelObjectのデータ形式の変換
+ * ・StatusCodeの変換と例外ハンドリング
+ */
+ export class AdminApiFacade {
   constructor(adminApi, errorHandler) {
     this.adminApi = adminApi;
     this.errorHandler = errorHandler;

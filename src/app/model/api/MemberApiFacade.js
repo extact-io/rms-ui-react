@@ -2,8 +2,12 @@ import { ApiDtoConverter } from 'app/model/api/ApiDtoConverter';
 import { DateUtils } from 'core/utils/DateUtils';
 import { LangUtils } from 'core/utils/LangUtils';
 
-// ApiとModelのプロパティ名にギャップが出た時にギャップを吸収する
-// ApiとModelのデータ形式の変換
+/**
+ * WebApi呼び出しに対して以下を行うFacadeクラス
+ * ・DtoとModelObjectのプロパティ名にギャップが出た時のギャップの吸収
+ * ・DtoとModelObjectのデータ形式の変換
+ * ・StatusCodeの変換と例外ハンドリング
+ */
 class MemberApiFacade {
   constructor(memberApi, errorHandler) {
     this.memberApi = memberApi;

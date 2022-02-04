@@ -150,7 +150,7 @@ export default function useFromToDateTime(baseline = new Date(Date.now())) {
     );
   };
 
-  const fromToDateTime = {
+  return {
     ...dateTimeFields,
     changeDateTime,
     getStartDateTime,
@@ -160,7 +160,6 @@ export default function useFromToDateTime(baseline = new Date(Date.now())) {
     processOnInputFixTiming,
     allOk,
   };
-  return fromToDateTime;
 }
 
 function initStartDate(baseline) {

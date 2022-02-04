@@ -7,10 +7,10 @@ import RentalItemMasterPanel from 'app/ui/panel/admin/RentalItemMasterPanel';
 import ReservationMasterPanel from 'app/ui/panel/admin/ReservationMasterPanel';
 import UserMasterPanel from 'app/ui/panel/admin/UserMasterPanel';
 import TopPanel from 'app/ui/panel/common/TopPanel';
-import UseProfile from 'app/ui/panel/common/UserProfilePanel';
+import UseProfilePanel from 'app/ui/panel/common/UserProfilePanel';
 import { AppConfig as memberAppConfig } from 'app/ui/panel/member/MemberAppConfig';
 import RentalItemListPanel from 'app/ui/panel/member/RentalItemListPanel';
-import ReservationStep from 'app/ui/panel/member/ReservationStepPanel';
+import ReservationStepPanel from 'app/ui/panel/member/ReservationStepPanel';
 import ReserveComfirmationPanel from 'app/ui/panel/member/ReserveComfirmationPanel';
 import React, { useContext } from 'react';
 import { Navigate } from 'react-router';
@@ -24,7 +24,7 @@ export function RmsRouter() {
       <Route path="member" element={<RmsApplicationPageAuthWrapper />}>
         <Route index element={<TopPanel panels={memberAppConfig.panels} />} />
         <Route path="item" element={<RentalItemListPanel />} />
-        <Route path="reservation" element={<ReservationStep />} />
+        <Route path="reservation" element={<ReservationStepPanel />} />
         <Route path="history" element={<ReserveComfirmationPanel />} />
       </Route>
       <Route path="admin" element={<RmsApplicationPageAuthWrapper />}>
@@ -34,7 +34,7 @@ export function RmsRouter() {
         <Route path="user" element={<UserMasterPanel />} />
       </Route>
       <Route path="user" element={<RmsApplicationPageAuthWrapper />}>
-        <Route path="profile" element={<UseProfile />} />
+        <Route path="profile" element={<UseProfilePanel />} />
       </Route>
       <Route path="logout" element={<Logout />} />
     </Routes>

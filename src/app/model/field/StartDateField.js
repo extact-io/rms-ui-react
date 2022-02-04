@@ -30,7 +30,6 @@ export class StartDateFieldValidator extends FieldValidator {
 
 export class StartDateField extends ValidatableFieldDelegator {
   constructor(value, infoMessage, validator = StartDateFieldValidator.INSTANCE.validate, formt) {
-    // TODO:valueの型を見てStringとDateの分岐を作ろう
     super(value, validator, true, infoMessage, ['startTime', 'endDate', 'endTime']);
     this.format = formt;
   }

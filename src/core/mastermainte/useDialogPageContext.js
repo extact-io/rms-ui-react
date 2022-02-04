@@ -42,7 +42,7 @@ export const useDialogPageContext = () => {
     }
     setPageContext(contextMap[nextMode]);
   };
-  const extPageContext = {
+  return {
     ...currentContext,
     isDetailPageBack() {
       return detailPageBack;
@@ -70,5 +70,4 @@ export const useDialogPageContext = () => {
     },
     changeMode,
   };
-  return extPageContext;
 };
