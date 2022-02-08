@@ -1,3 +1,4 @@
+import { ConfigConsts } from 'app/ConfigConsts';
 import { BearerToken } from 'app/model/BearerToken';
 import { ApiClientFactory } from 'app/model/api/ApiClientFactory';
 import { UserType } from 'app/model/field/UserType';
@@ -66,6 +67,10 @@ export default function Login() {
   const handleClickLogin = async (event) => {
     event.preventDefault();
     messageState.clear();
+    if (!loginPhrase.loginId || !loginPhrase.password) {
+      messageState.pushMessage(ConfigConsts.RMS_ERROR_CODE.AUTH_ERROR, 'IDまたはパスワードの入力がありません');
+      return;
+    }
     await processLogin(loginPhrase.loginId, loginPhrase.password);
   };
 

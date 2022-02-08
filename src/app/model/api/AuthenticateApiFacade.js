@@ -25,10 +25,12 @@ import { LoginDto } from 'rms-api';
         bearerToken: this.extractBearerToken(response),
       };
     } catch (error) {
-      const hadler404 = {
-        404: () => 'ログインIDまたはパスワードが違います',
+      const errorMessage = 'ログインIDまたはパスワードが違います';
+      const hadler400_404 = {
+        400: () => errorMessage,
+        404: () => errorMessage,
       };
-      throw this.errorHandler.handleError(error, hadler404);
+      throw this.errorHandler.handleError(error, hadler400_404);
     }
   }
   extractBearerToken(response) {
