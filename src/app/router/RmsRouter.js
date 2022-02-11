@@ -7,7 +7,7 @@ import RentalItemMasterPanel from 'app/ui/panel/admin/RentalItemMasterPanel';
 import ReservationMasterPanel from 'app/ui/panel/admin/ReservationMasterPanel';
 import UserMasterPanel from 'app/ui/panel/admin/UserMasterPanel';
 import TopPanel from 'app/ui/panel/common/TopPanel';
-import UseProfilePanel from 'app/ui/panel/common/UserProfilePanel';
+import UserProfilePanel from 'app/ui/panel/common/UserProfilePanel';
 import { AppConfig as memberAppConfig } from 'app/ui/panel/member/MemberAppConfig';
 import RentalItemListPanel from 'app/ui/panel/member/RentalItemListPanel';
 import ReservationStepPanel from 'app/ui/panel/member/ReservationStepPanel';
@@ -34,7 +34,7 @@ export function RmsRouter() {
         <Route path="user" element={<UserMasterPanel />} />
       </Route>
       <Route path="user" element={<RmsApplicationPageAuthWrapper />}>
-        <Route path="profile" element={<UseProfilePanel />} />
+        <Route path="profile" element={<UserProfilePanel />} />
       </Route>
       <Route path="logout" element={<Logout />} />
     </Routes>

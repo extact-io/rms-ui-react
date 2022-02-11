@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function UseProfilePanel() {
+export default function UserProfilePanel() {
   const classes = useStyles();
 
   const { loginUser, updateLoginUser } = useContext(SessionContext);
