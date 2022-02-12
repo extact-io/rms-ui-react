@@ -1,6 +1,6 @@
 import { ApiDtoConverter } from 'app/model/api/ApiDtoConverter';
 import { LangUtils } from 'core/utils/LangUtils';
-import { LoginDto } from 'rms-api';
+import { LoginDto } from '@extact-io/rms-generated-client-js';
 
 /**
  * WebApi呼び出しに対して以下を行うFacadeクラス

@@ -6,18 +6,26 @@ import { ErrorHandler } from 'app/model/api/ErrorHandler';
 import { MemberApiFacade } from 'app/model/api/MemberApiFacade';
 import { UserType as ModelUserType } from 'app/model/field/UserType';
 import { DateUtils } from 'core/utils/DateUtils';
-import { AdminApi, ApiClient, AuthenticateApi, CommonApi, MemberApi, UserType } from 'rms-api';
+import {
+  AdminApi,
+  ApiClient,
+  AuthenticateApi,
+  CommonApi,
+  MemberApi,
+  UserType,
+} from '@extact-io/rms-generated-client-js';
 
 class ApiClientFactory {
   // fields
   authTypeDef = {
-    RmsJwtAuth:{ // OpenAPI => @SecurityRequirement(name = "RmsJwtAuth")
+    RmsJwtAuth: {
+      // OpenAPI => @SecurityRequirement(name = "RmsJwtAuth")
       type: 'bearer',
       accessToken() {
         return BearerToken.getInstance()?.token;
-      }
-    }
-  }
+      },
+    },
+  };
 
   // constructor
   constructor(baseUrl = 'http://localhost:7001') {

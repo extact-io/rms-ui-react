@@ -7,7 +7,7 @@ import {
   RentalItemResourceDto,
   ReservationResourceDto,
   AddUserAccountDto,
-} from 'rms-api';
+} from '@extact-io/rms-generated-client-js';
 
 class ApiDtoConverter {
   static toRentalItemModel(rentalItemResourceDto) {

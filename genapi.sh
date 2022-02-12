@@ -14,7 +14,8 @@ esac
 
 
 RMS_HOME="/c/reps/rms"
-RMS_SERVER_HOME="${RMS_HOME}/rms-service-server"
+RMS_SERVER_HOME="${RMS_HOME}/rms-server"
+GEN_API_HOME="/c/VSCode_workspaces/rms-generated-client-js"
 
 cd $RMS_SERVER_HOME
 ./startup.sh generateOas
@@ -36,7 +37,6 @@ if [ "$STEP" = "gen-client" ]; then
   exit 0
 fi
 
-GEN_API_HOME="/c/VSCode_workspaces/genapi"
 if [ ! -e $GEN_API_HOME ]; then
   echo "${GEN_API_HOME} not exist!!"
   exit 1;
