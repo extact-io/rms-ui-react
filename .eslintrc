@@ -105,5 +105,8 @@
         "newlines-between": "ignore"
       }
     ]
+  },
+  "globals": {
+    "process": true
   }
 }

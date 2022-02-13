@@ -28,7 +28,7 @@ class ApiClientFactory {
   };
 
   // constructor
-  constructor(baseUrl = 'http://localhost:7001') {
+  constructor(baseUrl = process.env.REACT_APP_API_ENDPOINT) {
     this.apiClient = new ApiClient(baseUrl);
     this.apiClient.authentications = this.authTypeDef;
     this.errorHandler = new ErrorHandler();

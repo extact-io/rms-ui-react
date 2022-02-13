@@ -15,6 +15,7 @@ import ReserveComfirmationPanel from 'app/ui/panel/member/ReserveComfirmationPan
 import React, { useContext } from 'react';
 import { Navigate } from 'react-router';
 import { Route, Routes } from 'react-router-dom';
+import { Link, Typography } from '@material-ui/core';
 
 export function RmsRouter() {
   return (
@@ -37,6 +38,7 @@ export function RmsRouter() {
         <Route path="profile" element={<UserProfilePanel />} />
       </Route>
       <Route path="logout" element={<Logout />} />
+      <Route path="/*" element={<PageNotFound />} />
     </Routes>
   );
 }
@@ -44,8 +46,19 @@ export function RmsRouter() {
 function RmsApplicationPageAuthWrapper() {
   const { authenticated, loginUser } = useContext(SessionContext);
   if (!authenticated()) {
-    return <Navigate to='/login' />;
+    return <Navigate to="/login" />;
   }
   const appConfig = loginUser.userType.isMember() ? memberAppConfig : adminAppConfig;
   return <RmsApplicationPage appConfig={appConfig} />;
+}
+
+function PageNotFound() {
+  return (
+    <Typography>
+      Page Not Found..&nbsp;
+      <Link href="/" underline="always">
+        TopPage
+      </Link>
+    </Typography>
+  );
 }
