@@ -1,0 +1,30 @@
+name: deploy-aws
+
+on:
+  workflow_dispatch:
+    branches: [ main ]
+
+jobs:
+  build_deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+
+      - name: Install Dependencies
+        run: |
+          yarn install
+          git clone https://github.com/extact-io/rms-generated-client-js.git
+          cd rms-generated-client-js
+          npm link
+          cd ../
+          npm link @extact-io/rms-generated-client-js
+
+      - name: Build
+        run: |
+          yarn build
