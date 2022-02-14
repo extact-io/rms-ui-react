@@ -1,0 +1,11 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ec2-user/rmsServiceClient
+hooks:
+
+  BeforeInstall:
+    - location: scripts/delete_modules.sh
+      timeout: 300
+      runas: root

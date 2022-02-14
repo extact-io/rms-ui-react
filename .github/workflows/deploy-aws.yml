@@ -28,3 +28,25 @@ jobs:
       - name: Build
         run: |
           yarn build
+
+      - name: Deploy AWS
+        run: |
+          mkdir rmsServiceClient
+          cp -r ./build ./rmsServiceClient
+          cp ./deployment/appspec.yml ./rmsServiceClient
+          cp -r ./deployment/scripts ./rmsServiceClient
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-1
+
+      - name: Upload file to S3 and CodeDeploy
+        env:
+          S3_UPLOAD_BUCKET: ${{ secrets.S3_UPLOAD_BUCKET }}
+        run: |
+          ZIP_NAME="rmsServiceClient/rmsServiceClient-"`date "+%Y%m%d_%H%M%S"`.zip
+          aws deploy push --application-name rmsServiceClient --s3-location s3://$S3_UPLOAD_BUCKET/$ZIP_NAME --ignore-hidden-files --source ./rmsServiceClient
+          aws deploy create-deployment --application-name rmsServiceClient --deployment-config-name CodeDeployDefault.OneAtATime --deployment-group-name rmsServiceClientGroup --s3-location bucket=$S3_UPLOAD_BUCKET,bundleType=zip,key=$ZIP_NAME

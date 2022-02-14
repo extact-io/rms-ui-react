@@ -24,3 +24,5 @@ yarn-debug.log*
 yarn-error.log*
 
 Test.js
+test.sh
+rmsServiceClient
