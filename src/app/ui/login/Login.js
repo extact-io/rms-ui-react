@@ -50,9 +50,8 @@ export default function Login() {
   const classes = useStyles();
 
   const [loginPhrase, setLoginPhrase] = useState({
-    loginId: 'member1',
-    // loginId: 'soramame',
-    password: 'member1',
+    loginId: '',
+    password: '',
   });
   const navigate = useNavigate();
   const { updateLoginUser, fallbackAuth } = useContext(SessionContext);
