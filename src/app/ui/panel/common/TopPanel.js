@@ -16,13 +16,13 @@ const useStyles = makeStyles({
     flexGrow: 1,
   },
   card: {
+    marginTop: '8px',
     maxWidth: 275,
   },
   hr: {
     marginTop: '8px',
     marginBottom: '8px',
   },
-  pos: {},
 });
 
 export default function TopPanel({ panels }) {
@@ -39,7 +39,7 @@ export default function TopPanel({ panels }) {
                   {panel.label}
                 </Typography>
                 <Divider className={classes.hr} />
-                <Typography className={classes.pos} color="textSecondary">
+                <Typography color="textSecondary">
                   {panel.desc}
                 </Typography>
               </CardContent>
