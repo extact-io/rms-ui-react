@@ -61,7 +61,7 @@ cd /path/to/your/rms-ui-react_dir
 # Run the app
 yarn start
 ```
-`yarn start`により自動でブラウザが立ち上がりLogin画面がでれば手順は成功です。  
+`yarn start`で自動でブラウザが立ち上がりLogin画面がでれば手順は成功です（ブラウザが立ち上がってからLogin画面がでるまで1,2分掛かります）  
 ただし、rms-ui-reactはフロントエンドアプリなのでLogin画面以降の動作にはバックエンドのサーバーアプリが必要です。サーバアプリには実物の[RMS](https://github.com/extact-io/rms)を使いますので、動作させる場合は次の手順を行います
 
 ### バックエンドアプリのビルドと起動
