@@ -1,4 +1,3 @@
-import { useFetchState } from 'core/hook/useFetchState';
 import MasterMainteDialog from 'core/mastermainte/MasterMainteDialog';
 import { AddDialogButton } from 'core/mastermainte/MasterMainteDialogButton';
 import { MasterMainteDialogContextProvider } from 'core/mastermainte/MasterMainteDialogContextProvider';
@@ -95,17 +94,18 @@ export default function MasterMainteDataGrid({ masterContext }) {
 
   // returnを返す場合は同期メソッドから返す必要があるので
   // async/awaitでなくPromiseスタイルにしている
-  const fetchState = useFetchState(messageState);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetchState.changeToStartState();
     masterContext.serverApi
       .getAll()
       .then((data) => {
-        fetchState.changeToEndState(data);
         dispach({ type: 'INIT', initRows: data });
       })
       .catch((error) => {
-        fetchState.changeToErrorState(error);
+        messageState.pushMessage(error.code, error.message);
+      })
+      .finally(() => {
+        setLoading(false);
       });
     return () => messageState.clear();
   }, []);
@@ -158,7 +158,7 @@ export default function MasterMainteDataGrid({ masterContext }) {
             }}
             sortModel={sortModel}
             onSortModelChange={(model) => setSortModel(model)}
-            loading={fetchState.nowLoading()}
+            loading={loading}
           />
         </div>
         <MasterMainteDialog dialogContent={masterContext.dialogContent} />
