@@ -45,7 +45,10 @@ const defaultDeleteHandlers = {
       const { data: resource } = await this.adminApi.updateRentalItemWithHttpInfo(param);
       return ApiDtoConverter.toRentalItemModel(resource);
     } catch (error) {
-      throw this.errorHandler.handleError(error);
+      const customHandlers = {
+        409: () => '既に使われているシリアル番号です。別の番号にしてください',
+      };
+      throw this.errorHandler.handleError(error, customHandlers);
     }
   }
   async deleteRentalItem(deleteId) {
@@ -69,7 +72,10 @@ const defaultDeleteHandlers = {
       const { data: resource } = await this.adminApi.updateReservationWithHttpInfo(param);
       return ApiDtoConverter.toReservationModel(resource);
     } catch (error) {
-      throw this.errorHandler.handleError(error);
+      const hadler409 = {
+        409: () => '指定の開始終了日時には別の予約が入っているため更新ができませんでした',
+      };
+      throw this.errorHandler.handleError(error, hadler409);
     }
   }
   async deleteReservation(deleteId) {
@@ -105,7 +111,10 @@ const defaultDeleteHandlers = {
       const { data: resource } = await this.adminApi.updateUserAccountWithHttpInfo(param);
       return ApiDtoConverter.toUserAccountModel(resource);
     } catch (error) {
-      throw this.errorHandler.handleError(error);
+      const customHandlers = {
+        409: () => '既に使われているログインIDです。別のIDにしてください',
+      };
+      throw this.errorHandler.handleError(error, customHandlers);
     }
   }
   async deleteUserAccount(deleteId) {
