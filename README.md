@@ -3,8 +3,15 @@
 # RMS for React UI
 > RMS for React UIはReactとMaterial-UIの利用法や効果を確認することを目的とした[Rental Management System](https://github.com/extact-io/rms)のSPAアプリです
 
-<!-- START doctoc -->
-<!-- END doctoc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [アーキテクチャ](#%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3)
+- [ビルドと動作方法](#%E3%83%93%E3%83%AB%E3%83%89%E3%81%A8%E5%8B%95%E4%BD%9C%E6%96%B9%E6%B3%95)
+- [`rms-ui-react`で実装している仕組みの紹介](#rms-ui-react%E3%81%A7%E5%AE%9F%E8%A3%85%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E4%BB%95%E7%B5%84%E3%81%BF%E3%81%AE%E7%B4%B9%E4%BB%8B)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## アーキテクチャ
 Next.jsなど混じり気のないReact純度100%のJavaScriptによるSPAアプリです
