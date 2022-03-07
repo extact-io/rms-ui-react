@@ -186,7 +186,7 @@ export class PasswordField extends ValidatableFieldDelegator {
   }
 }
 ```
-UserProfile画面とユーザメンテナンスダイアログの双方にパスワードの入力がありますが、「半角数字ハイフン14文字以内」といったドメイン情報やチェック実装はどちらもPasswordFieldに実装されています。また、これは他のすべてのフィールドについても同様ですべてのフィールドは[fieldディレクトリ](/src/app/model/field/)に実装されています
+UserProfile画面とユーザメンテナンスダイアログの双方にパスワードの入力がありますがどちらもPasswordFieldに実装されています。また、これは他のすべてのフィールドについても同様ですべてのフィールドは[fieldディレクトリ](/src/app/model/field/)に実装されています
 
 ### 終了日時の自動補完
 Googleカレンダーのように開始日を次の日にしたら終了日を自動でズラすCustomHook(`useFromToDateTime`)を作成しています（Pickerからの入力だけであればそれほど実装は難しくないですが、今回は手入力も可としているので手入力された場合の不正に日付のバリデーションも考慮する必要があるため実装にかなり苦労しました...）
