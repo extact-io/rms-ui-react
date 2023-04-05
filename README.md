@@ -1,5 +1,3 @@
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=extact-io_rms-ui-react&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=extact-io_rms-ui-react)
-[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=extact-io_rms-ui-react&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=extact-io_rms-ui-react)
 # RMS for React UI
 > RMS for React UIはReactとMaterial-UIの利用法や効果を確認することを目的とした[Rental Management System](https://github.com/extact-io/rms)のSPAアプリです
 
