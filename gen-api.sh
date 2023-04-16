@@ -13,14 +13,14 @@ case "$1" in
 esac
 
 
-RMS_HOME="/c/reps/rms"
-RMS_SERVER_HOME="${RMS_HOME}/rms-server"
+RMS_HOME="/c/reps/msa-rms"
+RMS_SERVER_HOME="${RMS_HOME}/msa-rms-apigateway"
 GEN_API_HOME="/c/VSCode_workspaces/rms-generated-client-js"
 
 cd $RMS_SERVER_HOME
-./startup.sh generateOas
+./maven-all.sh gen-openapi
 if [ $? -ne 0 ]; then
-  echo "generateOas fail!!!"
+  echo "gen-openapi fail!!!"
   exit $?
 fi
 
@@ -29,8 +29,20 @@ if [ "$STEP" = "gen-openapi" ]; then
   exit 0
 fi
 
-cd $RMS_HOME
-mvn -PgenJsClient clean openapi-generator:generate
+#cd $RMS_HOME
+if [ -f ./target/generated-oas/openapi.yml ]; then
+  if [ ! -d ./temp ]; then
+    mkdir ./temp
+  fi
+  cp -f ./target/generated-oas/openapi.yml ./temp
+  OAS_FILE_PATH="temp/openapi.yml"
+fi
+
+mvn -Pgen-js-client clean openapi-generator:generate -Dopenapi.file.path=$OAS_FILE_PATH
+if [ $? -ne 0 ]; then
+  echo "gen-client fail!!!"
+  exit $?
+fi
 
 if [ "$STEP" = "gen-client" ]; then
   echo "### end ${STEP} ###"
@@ -43,6 +55,8 @@ if [ ! -e $GEN_API_HOME ]; then
 fi
 rm -rf ${GEN_API_HOME}/*
 cp -rf ./target/generated-sources/openapi/. $GEN_API_HOME
+cp -f $OAS_FILE_PATH $GEN_API_HOME
+rm -rf ./temp
 if [ "$STEP" = "replace" ]; then
   echo "### end ${STEP} ###"
   exit 0
