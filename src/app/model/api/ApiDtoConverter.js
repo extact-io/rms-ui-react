@@ -1,12 +1,12 @@
 import { UserType } from 'app/model/field/UserType';
 import { DateUtils } from 'core/utils/DateUtils';
 import {
-  AddRentalItemDto,
-  AddReservationDto,
+  AddRentalItemEventDto,
+  AddReservationEventDto,
   UserAccountResourceDto,
   RentalItemResourceDto,
   ReservationResourceDto,
-  AddUserAccountDto,
+  AddUserAccountEventDto,
 } from '@extact-io/rms-generated-client-js';
 
 class ApiDtoConverter {
@@ -45,14 +45,14 @@ class ApiDtoConverter {
     });
     return model;
   }
-  static toAddRentalItemDto(rentalItemModel) {
-    return AddRentalItemDto.constructFromObject(rentalItemModel);
+  static toAddRentalItemEventDto(rentalItemModel) {
+    return AddRentalItemEventDto.constructFromObject(rentalItemModel);
   }
-  static toAddReservationDto(reservationModel) {
-    return ApiDtoConverter.toAnyReservationResourceDto(reservationModel, AddReservationDto);
+  static toAddReservationEventDto(reservationModel) {
+    return ApiDtoConverter.toAnyReservationResourceDto(reservationModel, AddReservationEventDto);
   }
-  static toAddUserAccountDto(userAccountModel) {
-    return AddUserAccountDto.constructFromObject(userAccountModel);
+  static toAddUserAccountEventDto(userAccountModel) {
+    return AddUserAccountEventDto.constructFromObject(userAccountModel);
   }
   static toRentalItemResourceDto(rentalItemModel) {
     return RentalItemResourceDto.constructFromObject(rentalItemModel);

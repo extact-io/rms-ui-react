@@ -71,7 +71,7 @@ class MemberApiFacade {
     }
   }
   async addReservation(addModel) {
-    const param = { addReservationDto: ApiDtoConverter.toAddReservationDto(addModel) };
+    const param = { addReservationEventDto: ApiDtoConverter.toAddReservationEventDto(addModel) };
     try {
       const { data: reservationResource } = await this.memberApi.addReservationWithHttpInfo(param);
       return ApiDtoConverter.toReservationModel(reservationResource).id;

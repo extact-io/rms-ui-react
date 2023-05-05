@@ -28,7 +28,7 @@ const defaultDeleteHandlers = {
     }
   }
   async addRentalItem(addModel) {
-    const param = { addRentalItemDto: ApiDtoConverter.toAddRentalItemDto(addModel) };
+    const param = { addRentalItemEventDto: ApiDtoConverter.toAddRentalItemEventDto(addModel) };
     try {
       const { data: resourceDto } = await this.adminApi.addRentalItemWithHttpInfo(param);
       return ApiDtoConverter.toRentalItemModel(resourceDto).id;
@@ -94,7 +94,7 @@ const defaultDeleteHandlers = {
     }
   }
   async addUserAccount(addModel) {
-    const param = { addUserAccountDto: ApiDtoConverter.toAddUserAccountDto(addModel) };
+    const param = { addUserAccountEventDto: ApiDtoConverter.toAddUserAccountEventDto(addModel) };
     try {
       const { data: resourceDto } = await this.adminApi.addUserAccountWithHttpInfo(param);
       return ApiDtoConverter.toUserAccountModel(resourceDto).id;

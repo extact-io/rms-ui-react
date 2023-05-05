@@ -1,6 +1,6 @@
 import { ApiDtoConverter } from 'app/model/api/ApiDtoConverter';
 import { LangUtils } from 'core/utils/LangUtils';
-import { LoginDto } from '@extact-io/rms-generated-client-js';
+import { LoginEventDto } from '@extact-io/rms-generated-client-js';
 
 /**
  * WebApi呼び出しに対して以下を行うFacadeクラス
@@ -15,10 +15,10 @@ import { LoginDto } from '@extact-io/rms-generated-client-js';
     LangUtils.bindThis(this);
   }
   async authenticate(loginId, password) {
-    const loginDto = new LoginDto(loginId, password);
+    const loginEventDto = new LoginEventDto(loginId, password);
     try {
       const {data, response} = await this.authenticateApi.authenticateWithHttpInfo({
-        loginDto,
+        loginEventDto,
       });
       return {
         loginUser: ApiDtoConverter.toUserAccountModel(data),
