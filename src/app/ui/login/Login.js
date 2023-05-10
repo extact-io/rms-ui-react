@@ -14,11 +14,15 @@ import {
   Button,
   Container,
   CssBaseline,
+  Grid,
   LinearProgress,
+  Link,
+  Paper,
   TextField,
   Typography,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import InfoIcon from '@material-ui/icons/Info';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { Alert } from '@material-ui/lab';
 
@@ -43,6 +47,12 @@ const useStyles = makeStyles((theme) => ({
   alert: {
     width: '100%',
     marginBottom: theme.spacing(1),
+  },
+  infoTitle: {
+    padding: theme.spacing(1),
+  },
+  infoParagraph: {
+    margin: theme.spacing(0, 0, 1, 0),
   },
 }));
 
@@ -185,6 +195,37 @@ export default function Login() {
             </Button>
           </form>
         </div>
+        <Paper variant="outlined">
+          <Container className={classes.infoTitle}>
+            <Grid container>
+              <Grid xs={1}>
+                <InfoIcon color="action" fontSize="large" />
+              </Grid>
+              <Grid xs={11}>
+                <Typography component="h1" variant="h6" className={classes.infoParagraph}>
+                  &nbsp;&nbsp;Information
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid xs>
+              <Typography variant="body2" component="p" className={classes.infoParagraph}>
+                ＜ログインアカウント＞
+                <br />
+                ・会員：edamame/edamame
+                <br />
+                ・管理者：admin/admin
+                <br />
+              </Typography>
+            </Grid>
+            <Grid xs>
+              <Typography variant="body2" component="p">
+                ＜OpenAPI UI＞<br />
+                ・<Link href="https://api.rms.extact.io/openapi" target="_blank" underline="always">こちら</Link>からどうぞ
+              </Typography>
+            </Grid>
+          </Container>
+        </Paper>
+
         <Box mt={8}>
           <Copyright />
         </Box>
