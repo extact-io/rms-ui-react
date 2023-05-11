@@ -2,20 +2,18 @@ name: deploy-aws
 
 on:
   workflow_dispatch:
-    branches: [ main ]
+    branches: [ msa-rms-support ]
 
 jobs:
   build_deploy:
     runs-on: ubuntu-18.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-
+        uses: actions/checkout@v3
       - name: Install Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          node-version: 14
-
+          node-version: 18
       - name: Install Dependencies
         run: |
           yarn install
@@ -24,29 +22,20 @@ jobs:
           npm link
           cd ../
           npm link @extact-io/rms-generated-client-js
-
       - name: Build
         run: |
           yarn build
-
-      - name: Deploy AWS
-        run: |
-          mkdir rmsServiceClient
-          cp -r ./build ./rmsServiceClient
-          cp ./deployment/appspec.yml ./rmsServiceClient
-          cp -r ./deployment/scripts ./rmsServiceClient
-
+          git show --format='%H' --no-patch > ./build/commit_sha
+          cat ./build/commit_sha
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-northeast-1
-
-      - name: Upload file to S3 and CodeDeploy
+      - name: Upload file to S3
         env:
           S3_UPLOAD_BUCKET: ${{ secrets.S3_UPLOAD_BUCKET }}
         run: |
-          ZIP_NAME="rmsServiceClient/rmsServiceClient-"`date "+%Y%m%d_%H%M%S"`.zip
-          aws deploy push --application-name rmsServiceClient --s3-location s3://$S3_UPLOAD_BUCKET/$ZIP_NAME --ignore-hidden-files --source ./rmsServiceClient
-          aws deploy create-deployment --application-name rmsServiceClient --deployment-config-name CodeDeployDefault.OneAtATime --deployment-group-name rmsServiceClientGroup --s3-location bucket=$S3_UPLOAD_BUCKET,bundleType=zip,key=$ZIP_NAME
+          aws s3 rm s3://$S3_UPLOAD_BUCKET --recursive
+          aws s3 cp ./build/ s3://$S3_UPLOAD_BUCKET --recursive

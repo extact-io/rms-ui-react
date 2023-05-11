@@ -14,6 +14,7 @@ import {
   Button,
   Container,
   CssBaseline,
+  Divider,
   Grid,
   LinearProgress,
   Link,
@@ -55,6 +56,15 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(0, 0, 1, 0),
   },
 }));
+const ulStyleL1 = {
+  paddingLeft: '3px',
+  marginBottom: '5px',
+  listStyle: 'none'
+};
+const ulStyleL2 = {
+  paddingLeft: '20px',
+  paddingBottom: '3px',
+};
 
 export default function Login() {
   const classes = useStyles();
@@ -198,30 +208,51 @@ export default function Login() {
         <Paper variant="outlined">
           <Container className={classes.infoTitle}>
             <Grid container>
-              <Grid xs={1}>
+              <Grid item xs={1}>
                 <InfoIcon color="action" fontSize="large" />
               </Grid>
-              <Grid xs={11}>
+              <Grid item xs={11}>
                 <Typography component="h1" variant="h6" className={classes.infoParagraph}>
                   &nbsp;&nbsp;Information
                 </Typography>
               </Grid>
             </Grid>
-            <Grid xs>
-              <Typography variant="body2" component="p" className={classes.infoParagraph}>
-                ＜ログインアカウント＞
-                <br />
-                ・会員：edamame/edamame
-                <br />
-                ・管理者：admin/admin
-                <br />
-              </Typography>
+            <Grid item>
+              <Divider />
             </Grid>
-            <Grid xs>
-              <Typography variant="body2" component="p">
-                ＜OpenAPI UI＞<br />
-                ・<Link href="https://api.rms.extact.io/openapi" target="_blank" underline="always">こちら</Link>からどうぞ
-              </Typography>
+            <Grid item xs>
+              <ul style={ulStyleL1}>
+                <li>
+                  ＜ログインアカウント＞
+                  <ul style={ulStyleL2}>
+                    <li>会員：{process.env.REACT_APP_INFO_ACCOUNT_MEMBER}</li>
+                    <li>管理者：{process.env.REACT_APP_INFO_ACCOUNT_ADMIN}</li>
+                  </ul>
+                </li>
+                <li>
+                  ＜利用について＞
+                  <ul style={ulStyleL2}>
+                    <li>
+                      毎日再起動してデータはクリーンにしているので好きなだけいじってもらってOKです
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  ＜OpenAPI UI＞
+                  <ul style={ulStyleL2}>
+                    <li>
+                      <Link
+                        href={process.env.REACT_APP_INFO_OPENAPI_UI_URL}
+                        target="_blank"
+                        underline="always"
+                      >
+                        こちら
+                      </Link>
+                      からどうぞ
+                    </li>
+                  </ul>
+                </li>
+              </ul>
             </Grid>
           </Container>
         </Paper>
