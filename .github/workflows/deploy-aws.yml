@@ -15,16 +15,13 @@ jobs:
       - name: Checkout rms-generated-client-js
         uses: actions/checkout@v3
         with:
+          repository: rms-generated-client-js
           path: rms-generated-client-js
       - name: Link rms-generated-client-js
         working-directory: rms-generated-client-js
         run: |
-          git clone https://github.com/extact-io/rms-generated-client-js.git
-          cd rms-generated-client-js
           npm install
           npm link
-          cd ../
-          npm link @extact-io/rms-generated-client-js
       - name: Checkout rms-ui-react
         uses: actions/checkout@v3
         with:
