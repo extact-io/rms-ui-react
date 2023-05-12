@@ -8,26 +8,35 @@ jobs:
   build_deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
       - name: Install Node
         uses: actions/setup-node@v3
         with:
           node-version: 18
-      - name: Install Dependencies
+      - name: Checkout rms-generated-client-js
+        uses: actions/checkout@v3
+        with:
+          path: rms-generated-client-js
+      - name: Link rms-generated-client-js
+        working-directory: rms-generated-client-js
         run: |
-          yarn install
           git clone https://github.com/extact-io/rms-generated-client-js.git
           cd rms-generated-client-js
           npm install
           npm link
           cd ../
           npm link @extact-io/rms-generated-client-js
-      - name: Build
+      - name: Checkout rms-ui-react
+        uses: actions/checkout@v3
+        with:
+          path: rms-ui-react
+      - name: Build rms-ui-react
+        working-directory: rms-ui-react
         run: |
+          yarn install
+          npm link @extact-io/rms-generated-client-js
           yarn build
           git show --format='%H' --no-patch > ./build/commit_sha
-          cat ./build/commit_sha
+          echo "commit_sha:`cat ./build/commit_sha`"
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
