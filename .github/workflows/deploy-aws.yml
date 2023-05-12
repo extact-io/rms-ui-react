@@ -19,6 +19,7 @@ jobs:
           yarn install
           git clone https://github.com/extact-io/rms-generated-client-js.git
           cd rms-generated-client-js
+          git checkout msa-rms-support 
           npm link
           cd ../
           npm link @extact-io/rms-generated-client-js
