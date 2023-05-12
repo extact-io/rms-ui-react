@@ -48,7 +48,7 @@ jobs:
         run: |
           aws s3 rm s3://$S3_UPLOAD_BUCKET --recursive
           aws s3 cp ./rms-ui-react/build/ s3://$S3_UPLOAD_BUCKET --recursive
-      # CloudFrontのキャッシュポリシーをOFFにしてるので都度キャッシュ削除は今のことろ不要
+      # CloudFrontのキャッシュポリシーをOFFにしてるので都度キャッシュ削除は今のところ不要
       #- name: Delete cache from CloudFront
       #  env:
       #    CLOUD_FRONT_DIST_ID: ${{ secrets.CLOUD_FRONT_DIST_ID }}
