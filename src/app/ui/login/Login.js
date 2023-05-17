@@ -65,6 +65,11 @@ const ulStyleL2 = {
   paddingLeft: '20px',
   paddingBottom: '3px',
 };
+const underLine = {
+  textDecoration: 'underline',
+  textDecorationColor: '#FF0000',
+  fontWeight: 'bold',
+};
 
 export default function Login() {
   const classes = useStyles();
@@ -233,14 +238,18 @@ export default function Login() {
                   ＜利用について＞
                   <ul style={ulStyleL2}>
                     <li>
+                      クラウド料金節約のため<span style={underLine}>午後11時から翌午前9時</span>の間はサービスを落としてるため利用できません
+                    </li>
+                    <li>
                       毎日再起動してデータはクリーンにしているので好きなだけいじってもらってOKです
                     </li>
                   </ul>
                 </li>
                 <li>
-                  ＜OpenAPI UI＞
+                  ＜おまけ＞
                   <ul style={ulStyleL2}>
                     <li>
+                      OpenAPI UIは
                       <Link
                         href={process.env.REACT_APP_INFO_OPENAPI_UI_URL}
                         target="_blank"
@@ -248,7 +257,16 @@ export default function Login() {
                       >
                         こちら
                       </Link>
-                      からどうぞ
+                    <li>
+                      Jaeger(分散トレーシング)は
+                      <Link
+                        href={process.env.REACT_APP_INFO_JAEGER_URL}
+                        target="_blank"
+                        underline="always"
+                      >
+                        こちら
+                      </Link>
+                    </li>
                     </li>
                   </ul>
                 </li>
