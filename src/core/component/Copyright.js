@@ -7,7 +7,7 @@ export default function Copyright() {
       <Link
         color="inherit"
         target="_blank"
-        href="https://extact-io.github.io/rms-website/"
+        href="https://github.com/extact-io/"
       >
         extact.io
       </Link>{' '}
