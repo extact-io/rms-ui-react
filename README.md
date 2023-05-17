@@ -46,6 +46,7 @@ git clone https://github.com/extact-io/rms-generated-client-js.git
 # Go into the repository
 cd rms-generated-client-js
 # link to global
+npm install
 npm link
 # Go into the rms-ui-react directory
 cd /path/to/your/rms-ui-react_dir
