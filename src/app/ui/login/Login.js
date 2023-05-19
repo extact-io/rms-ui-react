@@ -232,6 +232,7 @@ export default function Login() {
                   <ul style={ulStyleL2}>
                     <li>会員：{process.env.REACT_APP_INFO_ACCOUNT_MEMBER}</li>
                     <li>管理者：{process.env.REACT_APP_INFO_ACCOUNT_ADMIN}</li>
+                    <li>(会員、管理者によって機能が変わります)</li>
                   </ul>
                 </li>
                 <li>
